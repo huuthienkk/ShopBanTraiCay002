@@ -3,6 +3,21 @@
 @section('title', 'Trang chủ - Shop Trái Cây')
 
 @section('content')
+    <!-- Hiển thị thông tin user với ảnh đại diện -->
+    @auth
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body d-flex align-items-center">
+            <img src="{{ auth()->user()->avatar ? Storage::url(auth()->user()->avatar) : 'https://via.placeholder.com/80' }}" 
+                 alt="Ảnh đại diện" class="rounded-circle me-3" style="width: 80px; height: 80px; object-fit: cover;">
+            <div>
+                <h4 class="mb-1">Xin chào, {{ auth()->user()->name }}! 👋</h4>
+                <p class="text-muted mb-0">Chào mừng bạn trở lại với Shop Trái Cây Tươi</p>
+                <a href="{{ route('profile.edit') }}" class="btn btn-outline-primary btn-sm mt-2">Cập nhật hồ sơ</a>
+            </div>
+        </div>
+    </div>
+    @endauth
+
     <!-- Hero Banner -->
     <div class="p-5 mb-4 bg-success text-white rounded-3 text-center shadow-sm">
         <h1 class="display-4">🍎 Shop Trái Cây Tươi</h1>

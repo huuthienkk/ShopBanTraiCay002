@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar', // Thêm trường avatar
     ];
 
     /**
@@ -44,5 +46,29 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the URL for the user's avatar.
+     */
+    public function getAvatarUrl(): string
+    {
+        if ($this->avatar) {
+            return Storage::url($this->avatar);
+        }
+        
+        return 'https://via.placeholder.com/120?text=No+Avatar';
+    }
+
+    /**
+     * Get the avatar URL for small display
+     */
+    public function getAvatarThumbnail(): string
+    {
+        if ($this->avatar) {
+            return Storage::url($this->avatar);
+        }
+        
+        return 'https://via.placeholder.com/80?text=No+Avatar';
     }
 }
