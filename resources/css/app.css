@@ -1,11 +1,28 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.img-container {
+    width: 100%;
+    height: 200px; /* Chiều cao ảnh đồng nhất */
+    overflow: hidden;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giữ tỉ lệ, cắt thừa */
+    border-radius: 5px;
+}
+.card-img-top {
+    height: 200px;        /* Chiều cao cố định cho tất cả ảnh */
+    object-fit: cover;    /* Cắt ảnh cho vừa khung, không méo */
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Giữ khoảng cách đều, đẩy nút xuống cuối */
+}
+.card-body form {
+    margin-top: auto; /* ép form (nút) xuống cuối */
 }
